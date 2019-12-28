@@ -1,0 +1,35 @@
+{
+  "name": "the-front-end",
+  "version": "0.0.1",
+  "description": "Leo's Blog",
+  "main": "index.js",
+  "scripts": {
+    "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
+    "dev": "cd ./config && webpack-dev-server --config dev.webpack.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leo",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "tailwindcss": "^1.1.4"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "autoprefixer": "^9.7.3",
+    "awesome-typescript-loader": "^5.2.1",
+    "css-loader": "^3.4.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
