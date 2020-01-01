@@ -1,16 +1,10 @@
-## 0.0.2 (2020-01-01)
+## <small>0.0.1 (2020-01-02)</small>
 
-
-### Features
-
-* **package:** 新增：提交前的规范处理 | Changelog.md 的的生成 ([ec6c531](https://github.com/HuangHongRui/JingChuTing/commit/ec6c531f1b1a0ac08d7c2657a8191b3111f10374))
-
-
-
-## 0.0.1 (2020-01-01)
-
-* :smile: 初始 ([73e0563](https://github.com/HuangHongRui/JingChuTing/commit/73e0563))
-* :smile: 新增 Eslint | husky | Lint-staged > 提交前检测规范. ([4a7157f](https://github.com/HuangHongRui/JingChuTing/commit/4a7157f))
+* chore(package): 初始：Webpack | React | Typescript | Sass | Tailwindcss | Logo ([c15319f](https://github.com/HuangHongRui/JingChuTing/commit/c15319f))
+* chore(package): 新增 - Eslint 配置 > Perttier 风格 ([7aa6e34](https://github.com/HuangHongRui/JingChuTing/commit/7aa6e34))
+* chore(package): 新增 - 校验提交规范 > commitlint ([74fa15f](https://github.com/HuangHongRui/JingChuTing/commit/74fa15f))
+* chore(package): 新增 - 规范工具 > Eslint | husky | Lint-staged ([90b95ea](https://github.com/HuangHongRui/JingChuTing/commit/90b95ea))
+* chore(package): 新增 - 规范规则 | 生成Changelog.md ([c834d31](https://github.com/HuangHongRui/JingChuTing/commit/c834d31))
 
 
 
