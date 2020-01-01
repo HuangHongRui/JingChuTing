@@ -1,12 +1,17 @@
 {
   "name": "the-front-end",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Leo's Blog",
   "main": "index.js",
   "scripts": {
-    "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "cd ./config && webpack-dev-server --config dev.webpack.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tailwind:css": "tailwind build src/css/tailwind.src.css -c  tailwind.js -o src/css/tailwind.css",
+    "commit": "git add . && git-cz",
+    "version": "standard-version",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s  && git add CHANGELOG.md",
+    "changelog-all": "conventional-changelog -i CHANGELOG.md -s -r 0",
+    "go": "npm run version && npm run changelog"
   },
   "author": "Leo",
   "license": "MIT",
@@ -22,19 +27,25 @@
     }
   },
   "lint-staged": {
-    "**/*.ts?(x)": [
-      "eslint -c .eslintrc.js src/* --fix",
-      "git add"
-    ]
+    "**/*.ts?(x)": "eslint -c .eslintrc.js src/* --fix"
+  },
+  "standard-version": {
+    "skip": {
+      "tag": true,
+      "commit": true,
+      "changelog": true
+    }
   },
   "devDependencies": {
     "@types/react": "^16.9.17",
     "@types/react-dom": "^16.9.4",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
-    "autoprefixer": "^9.7.3",
     "awesome-typescript-loader": "^5.2.1",
+    "commitizen": "^4.0.3",
+    "conventional-changelog-cli": "^2.0.31",
     "css-loader": "^3.4.0",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-import-resolver-typescript": "^2.0.0",
@@ -48,10 +59,16 @@
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
+    "standard-version": "^7.0.1",
     "style-loader": "^1.1.2",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
