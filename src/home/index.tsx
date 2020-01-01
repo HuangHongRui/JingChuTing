@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default class Home extends React.PureComponent {
   render() {
@@ -12,9 +12,14 @@ export default class Home extends React.PureComponent {
           />
           <div className="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
             <p className="text-xl leading-tight">Erin Lindford</p>
-            <p className="text-sm leading-tight text-gray-600">Customer Support Specialst</p>
+            <p className="text-sm leading-tight text-gray-600">
+              Customer Support Specialst
+            </p>
             <div className="mt-4">
-              <button type="button" className="text-purple-500 hover:text-white hover:bg-purple-500 border border-purple-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal">
+              <button
+                type="button"
+                className="text-purple-500 hover:text-white hover:bg-purple-500 border border-purple-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
+              >
                 Message
               </button>
             </div>
