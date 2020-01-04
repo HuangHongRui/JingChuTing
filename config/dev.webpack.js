@@ -1,17 +1,23 @@
-const path = require('path');
-const paths = require('./paths');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const paths = require("./paths");
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: path.resolve(paths.appSrc, "index.tsx"),
   output: {
     path: paths.appDist,
-    filename: 'leo.bundle.js',
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].chunk.js",
     publicPath: "/"
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js", ".json"]
+    extensions: [".tsx", ".ts", ".js", ".json"],
+    alias: {
+      pages: path.resolve(paths.appSrc, "pages"),
+      component: path.resolve(paths.appSrc, "component")
+    }
   },
 
   module: {
@@ -22,25 +28,30 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.sass$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        use: ["style-loader", { loader: 'css-loader', options: { importLoaders: 1 } }, "sass-loader"]
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          "sass-loader"
+        ]
       }
     ]
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(paths.appPublic, 'index.html'),
+      template: path.resolve(paths.appPublic, "index.html"),
       favicon: path.resolve(paths.appPublic, "logo.ico")
-    }),
+    })
   ],
 
   devServer: {
     contentBase: paths.appPublic,
+    // 解决问题: 本地开发路由刷新 404
+    historyApiFallback: true,
     watchContentBase: true,
     hot: true,
-    port: 9000,
-  },
-
+    port: 9000
+  }
 };

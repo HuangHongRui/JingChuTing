@@ -5,17 +5,17 @@
  *  文件：paths
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // 當前路徑
 const appDir = fs.realpathSync(process.cwd());
-const resolveApp = relativePath => path.resolve(appDir, '../',relativePath);
+const resolveApp = relativePath => path.resolve(appDir, "../", relativePath);
 
 module.exports = {
-  appPath: resolveApp('.'),
-  appSrc: resolveApp('./src'),
-  appDist: resolveApp('./dist'),
-  appPublic: resolveApp('./public'),
-  appBuild: resolveApp('./build'),
-}
+  appPath: resolveApp("."),
+  appSrc: resolveApp("./src"),
+  appDist: resolveApp("./dist"),
+  appPublic: resolveApp("./public"),
+  appBuild: resolveApp("./build")
+};
