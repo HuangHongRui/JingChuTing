@@ -1,6 +1,6 @@
 {
   "name": "the-front-end",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Leo's Blog",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,8 @@
   "author": "Leo",
   "license": "MIT",
   "dependencies": {
+    "@types/classnames": "^2.2.9",
+    "classnames": "^2.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
