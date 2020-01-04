@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import Home from "./home";
-import "./style/index.sass";
+import App from "./App";
+import "./style/index.scss";
 
-render(<Home />, document.getElementById("Leo"));
+render(<App />, document.getElementById("Leo"));
