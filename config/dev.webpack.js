@@ -16,6 +16,7 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js", ".json"],
     alias: {
       pages: path.resolve(paths.appSrc, "pages"),
+      style: path.resolve(paths.appSrc, "style"),
       component: path.resolve(paths.appSrc, "component")
     }
   },
@@ -34,6 +35,18 @@ module.exports = {
           "style-loader",
           { loader: "css-loader", options: { importLoaders: 1 } },
           "sass-loader"
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "svg-url-loader",
+            options: {
+              limit: 10000,
+              name: "[path][name].[ext]"
+            }
+          }
         ]
       }
     ]

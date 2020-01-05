@@ -34,7 +34,7 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/no-var-requires": "off",
-    '@typescript-eslint/explicit-function-return-type': 'off',
+    "@typescript-eslint/explicit-function-return-type": "off",
     // 处理  JSX not allowed in files with extension '.tsx'
     "react/jsx-filename-extension": [1, { extensions: [".ts", ".tsx"] }],
     // 处理 Missing file extension "tsx" for "./"
@@ -43,7 +43,7 @@ module.exports = {
       "ignorePackages",
       { js: "never", jsx: "never", ts: "never", tsx: "never" }
     ],
-
+    "react/static-property-placement": ["error", "static public field"],
     "no-console": "error",
     // "import/no-unresolved": "error",
     // "import/prefer-default-export": "off",
@@ -53,7 +53,7 @@ module.exports = {
       "error",
       {
         tabWidth: 2,
-        printWidth: 80
+        printWidth: 120
       }
     ]
   }
