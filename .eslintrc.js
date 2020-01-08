@@ -44,9 +44,9 @@ module.exports = {
       { js: "never", jsx: "never", ts: "never", tsx: "never" }
     ],
     "react/static-property-placement": ["error", "static public field"],
+    "import/prefer-default-export": "off",
     "no-console": "error",
     // "import/no-unresolved": "error",
-    // "import/prefer-default-export": "off",
     // 'max-len': ['error', { code: 100, ignoreUrls: true, ignoreStrings: true }],
     // prettier 配置
     "prettier/prettier": [

@@ -39,11 +39,15 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        issuer: {
+          test: /\.ts(x)?$/
+        },
         use: [
+          "@svgr/webpack",
           {
             loader: "svg-url-loader",
             options: {
-              limit: 10000,
+              limit: 1000,
               name: "[path][name].[ext]"
             }
           }

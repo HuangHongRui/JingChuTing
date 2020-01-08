@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import logo from "style/image/jingchu.svg";
+import { jingchu as logo } from "style/icon";
 
 export default class Navigation extends React.Component<P, S> {
   static defaultProps = {
