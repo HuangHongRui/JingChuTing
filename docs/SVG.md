@@ -2,7 +2,7 @@
 
 ---
 
-### 使用 `url-lodaer`
+### 使用 [`url-lodaer`](https://www.npmjs.com/package/url-loader)
 
 > 可满足基本需求
 
@@ -37,7 +37,7 @@
 
 ---
 
-### 使用 `svg-rul-lodaer`
+### 使用 [`svg-rul-lodaer`](https://www.npmjs.com/package/svg-url-loader)
 
 >1. 将SVG文件转化为 UTF-8数据URL（简短）
 >2. 使用 Gzip 压缩时，能有更好压缩效果
@@ -71,14 +71,24 @@
 
 ---
 
-> 下面等有需要再深入了解了.
 
+### 使用 [`SVGR`](https://github.com/gregberge/svgr)
 
-### 将编译为组件直接使用
+> 1. 可编译为组件直接使用
+> 2. 活跃库
+> 3. 功能强大可扩展
 
-[REACT-SVG-LOADER](https://www.npmjs.com/package/react-inlinesvg)
+Webpack 配置
+```jsx
+  {
+    test: /\.svg$/,
+    use: ['@svgr/webpack'],
+  }
+```
 
+文件中引用并调用
 
-### 提供一个容器
-
-[REACT-INLINESVG](https://www.npmjs.com/package/react-inlinesvg)
+```jsx
+  import Jingchu from "./jingchu.svg";
+  <Jingchu>
+```
