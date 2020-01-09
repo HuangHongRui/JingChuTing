@@ -1,27 +1,31 @@
 import React from "react";
 import cn from "classnames";
+import * as Icon from "style/icon";
 
 export default class Social extends React.Component<P, S> {
+  static defaultProps = {
+    rootClass: "default",
+    data: [
+      { id: "weibo", name: "微博" },
+      { id: "weixin", name: "微信" }
+    ]
+  };
+
   constructor(props: Readonly<P>) {
     super(props);
     this.state = {};
   }
 
-  static propsDefault = {
-    rootClass: "default",
-    data: [{ name: "微博", path: "" }]
-  };
-
   render() {
     const { rootClass, data } = this.props;
-    const rootClassName = cn("c-social", { rootClass });
+    const rootClassName = cn("c-social", rootClass);
 
     return (
       <div className={rootClassName}>
         {data.map(item => (
-          <span key={item.name}>
-            <img alt={item.name} src={item.path} />
-          </span>
+          <div key={item.name} style={{ background: "red" }}>
+            <img alt={item.name} src={(Icon as Icon)[`${item.id}`]} />
+          </div>
         ))}
       </div>
     );
@@ -32,10 +36,8 @@ type P = {
   rootClass: string;
   data: {
     name: "string";
-    path: "string";
+    id: "string";
   }[];
 };
 
-type S = {
-  demo?: boolean;
-};
+type S = {};

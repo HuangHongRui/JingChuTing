@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
-import { jingchu as logo } from "style/icon";
+import Social from "component/Social";
+import { jingchuting as logo } from "style/icon";
 
 export default class Navigation extends React.Component<P, S> {
   static defaultProps = {
@@ -32,6 +33,9 @@ export default class Navigation extends React.Component<P, S> {
               股票
             </button>
             <button type="button" className="mx-6 font-black hover:text-gray-900">
+              健身
+            </button>
+            <button type="button" className="mx-6 font-black hover:text-gray-900">
               任务
             </button>
             <button type="button" className="mx-6 font-black hover:text-gray-900">
@@ -44,6 +48,7 @@ export default class Navigation extends React.Component<P, S> {
               时间表
             </button>
           </div>
+          <Social />
         </div>
       </nav>
     );
