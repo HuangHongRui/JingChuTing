@@ -39,9 +39,18 @@ module.exports = {
       },
       {
         test: /\.svg$/,
+        exclude: path.resolve(paths.appSrc, "style/image"),
         issuer: {
           test: /\.ts(x)?$/
         },
+        use: ["@svgr/webpack"]
+      },
+      {
+        test: /\.svg$/,
+        issuer: {
+          test: /\.ts(x)?$/
+        },
+        exclude: path.resolve(paths.appSrc, "style/icon"),
         use: [
           "@svgr/webpack",
           {

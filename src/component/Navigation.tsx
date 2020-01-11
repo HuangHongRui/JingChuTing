@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import Social from "component/Social";
-import { jingchuting as logo } from "style/icon";
+import { jingchuting as logo } from "style/image";
 
 export default class Navigation extends React.Component<P, S> {
   static defaultProps = {
@@ -21,8 +21,8 @@ export default class Navigation extends React.Component<P, S> {
     return (
       <nav className={rootClassName}>
         <div className="w-10/12 flex items-center ">
-          <img alt="LOGO" className="logo hidden md:block h-10 w-1/4" src={logo} />
-          <div className="w-3/4 mx-4 font-serif text-xl">
+          <img alt="LOGO" className="logo hidden md:block h-10 w-1/5" src={logo} />
+          <div className="w-3/5 mx-4 font-serif text-xl">
             <button type="button" className="mx-6 font-black hover:text-gray-900">
               首页
             </button>
