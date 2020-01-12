@@ -5,7 +5,7 @@ import * as Icons from "style/icon";
 export default class Social extends React.Component<P, S> {
   static defaultProps = {
     rootClass: "default",
-    propClass: "h-6",
+    propClass: "h-4",
     data: [
       { id: "Zhihu", name: "知乎" },
       { id: "Weibo", name: "微博" },
@@ -23,7 +23,7 @@ export default class Social extends React.Component<P, S> {
 
   render() {
     const { rootClass, propClass, data } = this.props;
-    const rootClassName = cn("c-social flex w-1/5 ", rootClass);
+    const rootClassName = cn("c-social hidden md:flex", rootClass);
     const svgClassName = cn("m-2", propClass);
 
     return (
@@ -33,7 +33,7 @@ export default class Social extends React.Component<P, S> {
           const SvgDom = (Icons as IconTypes.All)[key];
           return (
             <div key={key} className={svgClassName}>
-              <SvgDom className="h-full w-auto" />
+              <SvgDom className="h-full w-auto hover:text-jc-hover-color cursor-pointer" />
             </div>
           );
         })}

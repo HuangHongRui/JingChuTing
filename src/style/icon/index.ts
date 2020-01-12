@@ -10,3 +10,4 @@ export { default as V2ex } from "./v2ex_i.svg";
 export { default as Weibo } from "./weibo_i.svg";
 export { default as Weixin } from "./weixin_i.svg";
 export { default as Zhihu } from "./zhihu_i.svg";
+export { default as Search } from "./search_i.svg";

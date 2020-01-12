@@ -1,5 +1,7 @@
-const path = require("path");
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
+const path = require("path");
+const autoprefixer = require("autoprefixer");
+const tailwindcss = require("tailwindcss");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const paths = require("./paths");
 
@@ -33,7 +35,14 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           "style-loader",
-          { loader: "css-loader", options: { importLoaders: 1 } },
+          { loader: "css-loader", options: { importLoaders: 2 } },
+          {
+            loader: "postcss-loader",
+            options: {
+              ident: "postcss",
+              plugins: [tailwindcss("../tailwind.config.js"), autoprefixer]
+            }
+          },
           "sass-loader"
         ]
       },
