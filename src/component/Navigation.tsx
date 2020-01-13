@@ -21,9 +21,9 @@ export default class Navigation extends React.Component<P, S> {
 
     return (
       <nav className={rootClassName}>
-        <div className="w-10/12 flex items-center overflow-hidden justify-between">
+        <div className="w-10/12 flex items-center overflow-hidden justify-between xl:max-w-screen-xl">
           <img alt="LOGO" className="logo h-6 md:w-1/12" src={logo} />
-          <div className="hidden md:flex w-7/12 mx-4 font-serif text-l justify-center nowrapt">
+          <div className="hidden md:flex w-7/12 mx-4 text-l justify-center nowrap">
             <button type="button" className="mx-4 font-black hover:text-jc-hover-color outline-none">
               首页
             </button>
@@ -38,6 +38,9 @@ export default class Navigation extends React.Component<P, S> {
             </button>
             <button type="button" className="mx-4 font-black hover:text-jc-hover-color outline-none">
               娱乐
+            </button>
+            <button type="button" className="mx-4 font-black hover:text-jc-hover-color outline-none">
+              旅游
             </button>
             <button type="button" className="mx-4 font-black hover:text-jc-hover-color outline-none">
               日记

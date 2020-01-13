@@ -1,5 +1,10 @@
 type SvgrComponent = React.StatelessComponent<React.SVGAttributes<SVGElement>>;
 
+declare module "*.png" {
+  const content: string;
+  export default content;
+}
+
 declare module "*_i.svg" {
   const content: SvgrComponent;
   export default content;

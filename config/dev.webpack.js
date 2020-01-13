@@ -70,6 +70,18 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 1000,
+              name: "[path][name].[ext]"
+            }
+          }
+        ]
       }
     ]
   },
