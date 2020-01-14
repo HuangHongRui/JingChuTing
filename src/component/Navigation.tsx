@@ -30,7 +30,8 @@ export default class Navigation extends React.Component<P, {}> {
           <img alt="LOGO" className="logo h-6 md:w-1/12" src={logo} />
           <div className="hidden md:flex w-7/12 mx-4 text-l justify-center nowrap">
             {navData.map(item => {
-              const isActive = RegExp(item.url).test(match.path);
+              const path = match.path === "/" ? "/home" : match.path;
+              const isActive = RegExp(item.url).test(path);
               const btnclass = cn("mx-4 font-black hover:text-jc-hover-color outline-none", {
                 "text-jc-hover-color": isActive
               });
