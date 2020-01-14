@@ -3,6 +3,7 @@ export { default as Facebook } from "./facebook_i.svg";
 export { default as Github } from "./github_i.svg";
 export { default as Instagram } from "./instagram_i.svg";
 export { default as Jianshu } from "./jianshu_i.svg";
+export { default as Linkedin } from "./linkedin_i.svg";
 export { default as Reddit } from "./reddit_i.svg";
 export { default as StackOverFlow } from "./stack-overflow_i.svg";
 export { default as Twitter } from "./twitter_i.svg";

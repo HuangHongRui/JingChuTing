@@ -7,12 +7,11 @@ export default class Social extends React.Component<P, S> {
     rootClass: "default",
     propClass: "h-4",
     data: [
-      { id: "Zhihu", name: "知乎" },
-      { id: "Weibo", name: "微博" },
-      { id: "Weixin", name: "微信" },
-      { id: "Github", name: "GitHub" },
-      { id: "Facebook", name: "脸书" },
-      { id: "Twitter", name: "推特" }
+      { id: "Weibo", name: "微博", url: "https://weibo.com/huanghongrui" },
+      { id: "Zhihu", name: "知乎", url: "https://www.zhihu.com/people/HuangHongRui/activities" },
+      { id: "Github", name: "GitHub", url: "https://github.com/HuangHongRui" },
+      { id: "Twitter", name: "推特", url: "https://twitter.com/HongRui_Huang" },
+      { id: "Instagram", name: "Ins", url: "https://www.instagram.com/HuangHongRui_" }
     ]
   };
 
@@ -32,9 +31,9 @@ export default class Social extends React.Component<P, S> {
           const key = item.id;
           const SvgDom = (Icons as IconTypes.All)[key];
           return (
-            <div key={key} className={svgClassName}>
+            <a key={key} className={svgClassName} href={item.url} target="_blank" rel="noopener noreferrer">
               <SvgDom className="h-full w-auto hover:text-jc-hover-color cursor-pointer" />
-            </div>
+            </a>
           );
         })}
       </div>
@@ -46,8 +45,9 @@ type P = {
   rootClass: string;
   propClass: string;
   data: {
-    name: "string";
     id: "string";
+    url: "string";
+    name: "string";
   }[];
 };
 
