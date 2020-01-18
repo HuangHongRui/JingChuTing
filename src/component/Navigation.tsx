@@ -26,7 +26,7 @@ export default class Navigation extends React.Component<P, {}> {
 
     return (
       <nav className={rootClassName}>
-        <div className="w-10/12 flex items-center overflow-hidden justify-between xl:max-w-screen-xl">
+        <div className="w-10/12 flex items-center overflow-hidden justify-between xl:max-w-screen-xl font-serif">
           <img alt="LOGO" className="logo h-6 md:w-1/12" src={logo} />
           <div className="hidden md:flex w-7/12 mx-4 text-l justify-center nowrap">
             {navData.map(item => {

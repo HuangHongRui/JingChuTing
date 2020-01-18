@@ -24,7 +24,7 @@ export default class Photo extends React.Component<P, S> {
   render() {
     const { rootClass, propClass, picUrl, mes } = this.props;
     const rootClassName = cn("c-photo m-auto overflow-hidden", rootClass);
-    const propClassName = cn("border-8 border-solid border-jc-bg-color md:rounded-jc-pic-radius", propClass);
+    const propClassName = cn("border-8 border-solid border-jc-bg-color rounded-lg", propClass);
 
     return (
       <div className={rootClassName}>

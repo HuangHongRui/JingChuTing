@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Home, Error } from "./pages";
+import { Home, Article, Error } from "./pages";
 
 export default class App extends React.Component<P, S> {
   constructor(props: Readonly<P>) {
@@ -13,6 +13,7 @@ export default class App extends React.Component<P, S> {
       <BrowserRouter>
         <Switch>
           <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path="/article" component={Article} />
           <Route path="*" component={Error} />
         </Switch>
       </BrowserRouter>

@@ -12,12 +12,15 @@ module.exports = {
       maxWidth: {
         "2/12": "16.666667%;",
         "screen-xl": "1280px",
-        "screen-sm": "640px",
+        "screen-lg": "1024px",
         "screen-md": "768px",
-        "screen-lg": "1024px"
+        "screen-sm": "640px"
+      },
+      minWidth: {
+        "jc-300": "300px"
       },
       borderRadius: {
-        "jc-pic-radius": "3rem"
+        "jc-3": "3rem"
       }
     }
   },
