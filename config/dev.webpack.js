@@ -17,6 +17,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"],
     alias: {
+      utils: path.resolve(paths.appSrc, "utils"),
       pages: path.resolve(paths.appSrc, "pages"),
       style: path.resolve(paths.appSrc, "style"),
       component: path.resolve(paths.appSrc, "component")

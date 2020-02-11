@@ -13,6 +13,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
     "paths": {
+      "utils": ["./utils"],
       "pages": ["./pages"],
       "style": ["./style"],
       "component": ["./component"]
