@@ -100,6 +100,7 @@ module.exports = {
     historyApiFallback: true,
     watchContentBase: true,
     hot: true,
+    https: true,
     port: 9000
   }
 };
