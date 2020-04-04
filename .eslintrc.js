@@ -33,6 +33,7 @@ module.exports = {
     }
   },
   rules: {
+    "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     // 处理  JSX not allowed in files with extension '.tsx'

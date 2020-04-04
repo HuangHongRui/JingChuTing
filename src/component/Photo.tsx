@@ -5,6 +5,7 @@
 
 import React from "react";
 import cn from "classnames";
+import { redemption } from "style/image";
 
 export default class Photo extends React.Component<P, S> {
   static defaultProps = {
@@ -28,7 +29,7 @@ export default class Photo extends React.Component<P, S> {
 
     return (
       <div className={rootClassName}>
-        <img className={propClassName} alt={mes} src={picUrl} />
+        <img className={propClassName} alt={mes} src={picUrl || redemption} />
       </div>
     );
   }

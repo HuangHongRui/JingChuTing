@@ -2,16 +2,25 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://localhost:5000/api";
 axios.defaults.timeout = 5000;
-// axios.defaults.withCredentials = true;
 
-const Api: API = {
+const observe = async (params: API_TYPE.PARAMS) => {
+  try {
+    const { data: res } = await axios(params);
+    if (res.status === 1) return res;
+    throw Error(res.status);
+  } catch (err) {
+    switch (err.message) {
+      case 0:
+        return "错误码 0";
+      default:
+        return "错误码 XXX";
+    }
+  }
+};
+
+const Api: API_TYPE.METHODS = {
   get: (url: string, params?: object, config?: {}) => {
-    return axios({
-      url,
-      params,
-      method: "get",
-      ...config
-    });
+    return observe({ method: "GET", url, params, ...config });
   },
 
   post: (api: string, arg?: object) => {
@@ -23,7 +32,20 @@ export function apiSearch(content: string) {
   return Api.get(`/search`, { value: content });
 }
 
-export interface API {
-  get: Function;
-  post: Function;
+export function apiArticle(content?: string) {
+  return Api.get(`/article`, { value: content });
+}
+
+namespace API_TYPE {
+  export type PARAMS = {
+    method: "GET" | "POST";
+    url: string;
+    params?: object;
+    config?: {};
+  };
+
+  export interface METHODS {
+    get: Function;
+    post: Function;
+  }
 }
