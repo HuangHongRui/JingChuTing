@@ -1,6 +1,11 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import "github-markdown-css/github-markdown";
+
+@import "codemirror/theme/monokai";
+@import "codemirror/lib/codemirror";
+@import "codemirror/addon/hint/show-hint"; // 用来做代码提示
 
 .text-ellipsis {
   white-space: nowrap;
