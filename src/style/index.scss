@@ -1,11 +1,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "github-markdown-css/github-markdown";
-
-@import "codemirror/theme/monokai";
-@import "codemirror/lib/codemirror";
-@import "codemirror/addon/hint/show-hint"; // 用来做代码提示
 
 .text-ellipsis {
   white-space: nowrap;
@@ -19,4 +14,25 @@
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.CodeMirror {
+  height: 100%;
+  font-size: 16px;
+}
+
+.markdown-body {
+  padding: 20px;
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+  ul ul, ol ul { 
+    list-style-type: circle; 
+  }
+  ul ul ul, ul ol ul {
+      list-style-type: square;
+  }
 }
