@@ -4,13 +4,17 @@ axios.defaults.baseURL = "https://localhost:5000/api";
 axios.defaults.timeout = 5000;
 
 const observe = async (params: API_TYPE.PARAMS) => {
+  enum Status {
+    success = 1,
+    Error
+  }
   try {
     const { data: res } = await axios(params);
-    if (res.status === 1) return res;
+    if (res.status === Status.success) return res;
     throw Error(res.status);
   } catch (err) {
     switch (err.message) {
-      case 0:
+      case Status.Error:
         return "错误码 0";
       default:
         return "错误码 XXX";
