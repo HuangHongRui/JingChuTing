@@ -16,9 +16,18 @@
   -webkit-box-orient: vertical;
 }
 
+.text-center-last {
+  text-align-last: center;
+}
+
 .CodeMirror {
+  padding-top: 20px;
+  padding-bottom: 20px;
   height: 100%;
   font-size: 16px;
+  .CodeMirror-line {
+    padding-left: 10px !important;
+  }
 }
 
 .markdown-body {
