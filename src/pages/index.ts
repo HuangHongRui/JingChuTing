@@ -1,4 +1,6 @@
-export { default as Home } from "./Home";
-export { default as Article } from "./Article";
-export { default as Study } from "./Study";
-export { default as Error } from "component/Error";
+import { lazy } from "react";
+
+export const Article = lazy(() => import(/* webpackChunkName: "Article" */ "./Article"));
+export const Home = lazy(() => import(/* webpackChunkName: "Home" */ "./Home"));
+export const Study = lazy(() => import(/* webpackChunkName: "Study" */ "./Study"));
+export const Error = lazy(() => import(/* webpackChunkName: "Error" */ "../component/Error"));

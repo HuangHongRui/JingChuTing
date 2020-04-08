@@ -11,17 +11,24 @@ module.exports = {
   output: {
     path: paths.appDist,
     filename: "[name].bundle.js",
-    chunkFilename: "[name].chunk.js",
-    publicPath: "/"
+    chunkFilename: "[name].bundle.js",
+    publicPath: "/",
   },
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
+
   resolve: {
     extensions: [".tsx", ".ts", ".js", ".json"],
     alias: {
       utils: path.resolve(paths.appSrc, "utils"),
       pages: path.resolve(paths.appSrc, "pages"),
       style: path.resolve(paths.appSrc, "style"),
-      component: path.resolve(paths.appSrc, "component")
-    }
+      component: path.resolve(paths.appSrc, "component"),
+    },
   },
 
   module: {
@@ -29,11 +36,11 @@ module.exports = {
       {
         test: /\.ts(x?)$/,
         use: ["awesome-typescript-loader"],
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.scss$/,
@@ -45,24 +52,24 @@ module.exports = {
             loader: "postcss-loader",
             options: {
               ident: "postcss",
-              plugins: [tailwindcss("../tailwind.config.js"), autoprefixer]
-            }
+              plugins: [tailwindcss("../tailwind.config.js"), autoprefixer],
+            },
           },
-          "sass-loader"
-        ]
+          "sass-loader",
+        ],
       },
       {
         test: /\.svg$/,
         exclude: path.resolve(paths.appSrc, "style/image"),
         issuer: {
-          test: /\.ts(x)?$/
+          test: /\.ts(x)?$/,
         },
-        use: ["@svgr/webpack"]
+        use: ["@svgr/webpack"],
       },
       {
         test: /\.svg$/,
         issuer: {
-          test: /\.ts(x)?$/
+          test: /\.ts(x)?$/,
         },
         exclude: path.resolve(paths.appSrc, "style/icon"),
         use: [
@@ -71,10 +78,10 @@ module.exports = {
             loader: "svg-url-loader",
             options: {
               limit: 1000,
-              name: "[path][name].[ext]"
-            }
-          }
-        ]
+              name: "[path][name].[ext]",
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif)$/,
@@ -83,19 +90,19 @@ module.exports = {
             loader: "url-loader",
             options: {
               limit: 1000,
-              name: "[path][name].[ext]"
-            }
-          }
-        ]
-      }
-    ]
+              name: "[path][name].[ext]",
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(paths.appPublic, "index.html"),
-      favicon: path.resolve(paths.appPublic, "logo.ico")
-    })
+      favicon: path.resolve(paths.appPublic, "logo.ico"),
+    }),
   ],
 
   devServer: {
@@ -105,6 +112,6 @@ module.exports = {
     watchContentBase: true,
     hot: true,
     https: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 };

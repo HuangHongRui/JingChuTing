@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "module": "commonjs",
+    "module": "esnext",
     "outDir": "./dist/",
     "jsx": "react",
     "target": "esnext",
