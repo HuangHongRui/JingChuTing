@@ -1,12 +1,12 @@
-import axios from "axios";
+import axios, { AxiosPromise } from "axios";
 
 axios.defaults.baseURL = "https://localhost:5000/api";
 axios.defaults.timeout = 5000;
 
-const observe = async (params: API_TYPE.PARAMS) => {
+const observe = async (params: PARAMS) => {
   enum Status {
     success = 1,
-    Error
+    Error,
   }
   try {
     const { data: res } = await axios(params);
@@ -22,14 +22,14 @@ const observe = async (params: API_TYPE.PARAMS) => {
   }
 };
 
-const Api: API_TYPE.METHODS = {
-  get: (url: string, params?: object, config?: {}) => {
+const Api: METHODS = {
+  get: (url, params, config) => {
     return observe({ method: "GET", url, params, ...config });
   },
 
-  post: (api: string, arg?: object) => {
-    return axios.post(api, arg);
-  }
+  post: (url, params, config) => {
+    return observe({ method: "POST", url, params, ...config });
+  },
 };
 
 export function apiSearch(content: string) {
@@ -40,16 +40,22 @@ export function apiArticle(content?: string) {
   return Api.get(`/article`, { value: content });
 }
 
-namespace API_TYPE {
-  export type PARAMS = {
-    method: "GET" | "POST";
-    url: string;
-    params?: object;
-    config?: {};
-  };
+export function apiStudySubmit(content: string) {
+  return Api.post(`/study`, { value: content });
+}
 
-  export interface METHODS {
-    get: Function;
-    post: Function;
-  }
+interface PARAMS {
+  method: "GET" | "POST";
+  url: string;
+  params?: object;
+  config?: {};
+}
+
+interface METHODS {
+  get: {
+    (url: string, params: object, config?: object): AxiosPromise;
+  };
+  post: {
+    (url: string, params: object, config?: object): AxiosPromise;
+  };
 }

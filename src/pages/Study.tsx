@@ -3,6 +3,7 @@ import marked from "marked";
 import CodeMirror from "codemirror";
 import Prism from "prismjs";
 import Navigation from "component/Navigation";
+import { apiStudySubmit } from "utils/api";
 
 import "codemirror/keymap/vim";
 // 使用语言
@@ -27,7 +28,7 @@ import "github-markdown-css/github-markdown.css";
 import "prismjs/components/prism-python";
 
 const renderer = new marked.Renderer();
-renderer.code = function(code, lang) {
+renderer.code = function (code, lang) {
   // eslint-disable-next-line no-param-reassign
   code = this.options.highlight(code, lang);
   if (!lang) {
@@ -52,19 +53,19 @@ marked.setOptions({
     } catch {
       return code;
     }
-  }
+  },
 });
 
 enum EditModeType {
   md = "markdown",
   js = "javascript",
   py = "python",
-  html = "htmlmixed"
+  html = "htmlmixed",
 }
 
 enum ViewModeType {
   "编辑模式",
-  "预览模式"
+  "预览模式",
 }
 export default class Study extends React.Component<P, S> {
   editor: any;
@@ -76,7 +77,7 @@ export default class Study extends React.Component<P, S> {
     this.state = {
       content: localStorage.getItem("studyContent") || "",
       editMode: EditModeType.md,
-      viewMode: ViewModeType.编辑模式
+      viewMode: ViewModeType.编辑模式,
     };
     this.textareaPRef = React.createRef();
   }
@@ -96,7 +97,7 @@ export default class Study extends React.Component<P, S> {
     const { content, editMode } = this.state;
     const textareaPRef = this.textareaPRef.current;
     this.editor = CodeMirror(
-      ele => {
+      (ele) => {
         textareaPRef.replaceChild(ele, textareaPRef.children[0]);
       },
       {
@@ -108,13 +109,13 @@ export default class Study extends React.Component<P, S> {
         lineNumbers: true,
         lineWrapping: true,
         foldGutter: true, // 折叠代码
-        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
       }
     );
     this.editor.on("change", () => {
       const val = this.editor.getValue();
       this.setState({
-        content: val
+        content: val,
       });
       localStorage.setItem("studyContent", val);
     });
@@ -128,13 +129,13 @@ export default class Study extends React.Component<P, S> {
     const { viewMode } = this.state;
     const val = viewMode ? 0 : 1;
     this.setState({
-      viewMode: val
+      viewMode: val,
     });
   };
 
   onEditMode = (event: any) => {
     this.setState({
-      editMode: event.target.value
+      editMode: event.target.value,
     });
   };
 
@@ -143,8 +144,9 @@ export default class Study extends React.Component<P, S> {
   };
 
   onSubmit = () => {
-    // 接口
-    localStorage.removeItem("studyContent");
+    const { content } = this.state;
+    apiStudySubmit(JSON.stringify(content));
+    // localStorage.removeItem("studyContent");
   };
 
   render() {
