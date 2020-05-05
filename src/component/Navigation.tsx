@@ -10,8 +10,11 @@ export default class Navigation extends React.Component<P, {}> {
   static defaultProps = {
     rootClass: "default",
     match: { path: "" },
-    // eslint-disable-next-line prettier/prettier
-    navData: [ { title: "首页", url: "home" }, { title: "文章", url: "article" }, { title: "财经", url: "finance" }, { title: "运动", url: "exercise" }, { title: "娱乐", url: "fun" }, { title: "旅游", url: "travle" }, { title: "日记", url: "diary" }, { title: "想法", url: "idea" }, { title: "任务", url: "task" }, { title: "时间", url: "time" } ]
+    navData: [
+      { title: "首页", url: "home" },
+      { title: "文章", url: "article" },
+      { title: "便笺", url: "note" },
+    ],
   };
 
   constructor(props: P) {
@@ -28,12 +31,12 @@ export default class Navigation extends React.Component<P, {}> {
       <nav className={rootClassName}>
         <div className="w-10/12 flex items-center overflow-hidden justify-between xl:max-w-screen-xl font-serif">
           <img alt="LOGO" className="logo h-6 md:w-1/12" src={logo} />
-          <div className="hidden md:flex w-7/12 mx-4 text-l justify-center nowrap">
-            {navData.map(item => {
+          <div className="hidden md:flex w-7/12 mx-4 text-l nowrap">
+            {navData.map((item) => {
               const path = match.path === "/" ? "/home" : match.path;
               const isActive = RegExp(item.url).test(path);
               const btnclass = cn("mx-4 font-black hover:text-jc-hover-color outline-none", {
-                "text-jc-hover-color": isActive
+                "text-jc-hover-color": isActive,
               });
               return (
                 <button key={item.url} type="button" className={btnclass}>

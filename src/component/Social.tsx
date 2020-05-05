@@ -11,8 +11,8 @@ export default class Social extends React.Component<P, S> {
       { id: "Zhihu", name: "知乎", url: "https://www.zhihu.com/people/HuangHongRui/activities" },
       { id: "Github", name: "GitHub", url: "https://github.com/HuangHongRui" },
       { id: "Twitter", name: "推特", url: "https://twitter.com/HongRui_Huang" },
-      { id: "Instagram", name: "Ins", url: "https://www.instagram.com/HuangHongRui_" }
-    ]
+      { id: "Instagram", name: "Ins", url: "https://www.instagram.com/xingfengshuo/" },
+    ],
   };
 
   constructor(props: Readonly<P>) {
@@ -27,7 +27,7 @@ export default class Social extends React.Component<P, S> {
 
     return (
       <div className={rootClassName}>
-        {data.map(item => {
+        {data.map((item) => {
           const key = item.id;
           const SvgDom = (Icons as IconTypes.All)[key];
           return (
