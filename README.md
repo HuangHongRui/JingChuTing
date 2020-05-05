@@ -13,5 +13,7 @@
   >>> cd docker
   >>> docker build -f ./docker/Dockerfile -t BLOG:1 .
   >>> docker run -d -p 80:80 BLOG:1
+  >>> nginx
+  >>> CMD + P + Q
   Chrome >>> http://localhost
 ```
