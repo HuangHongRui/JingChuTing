@@ -4,6 +4,8 @@ const autoprefixer = require("autoprefixer");
 const tailwindcss = require("tailwindcss");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const CompressionPlugin = require("compression-webpack-plugin");
 const paths = require("./paths");
 
 module.exports = {
@@ -11,8 +13,8 @@ module.exports = {
   entry: path.resolve(paths.appSrc, "index.tsx"),
   output: {
     path: paths.appBuild,
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    filename: "js/[name].bundle.js",
+    chunkFilename: "js/[name].bundle.js",
     publicPath: "/",
   },
   optimization: {
@@ -98,10 +100,14 @@ module.exports = {
   },
 
   plugins: [
+    // new BundleAnalyzerPlugin(),
+    new CleanWebpackPlugin({ root: paths.appBuild }),
     new HtmlWebpackPlugin({
       template: path.resolve(paths.appPublic, "index.html"),
       favicon: path.resolve(paths.appPublic, "logo.ico"),
     }),
-    new CleanWebpackPlugin({ root: paths.appBuild }),
+    new CompressionPlugin({
+      test: /\.js(\?.*)?$/i,
+    }),
   ],
 };
