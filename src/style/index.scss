@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+* {
+  outline: none !important;
+}
+
 .text-ellipsis {
   white-space: nowrap;
   overflow: hidden;

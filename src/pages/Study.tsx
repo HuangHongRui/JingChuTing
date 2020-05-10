@@ -2,6 +2,7 @@ import React from "react";
 import marked from "marked";
 import CodeMirror from "codemirror";
 import Prism from "prismjs";
+import moment from "moment";
 import Navigation from "component/Navigation";
 import { apiStudySubmit } from "utils/api";
 
@@ -72,18 +73,24 @@ export default class Study extends React.Component<P, S> {
 
   textareaPRef: React.RefObject<any>;
 
+  timer: any;
+
   constructor(props: Readonly<P>) {
     super(props);
     this.state = {
       content: localStorage.getItem("studyContent") || "",
       editMode: EditModeType.md,
       viewMode: ViewModeType.编辑模式,
+      cspTimer: null,
+      title: localStorage.getItem("studyTitle") || "",
     };
     this.textareaPRef = React.createRef();
+    this.timer = localStorage.getItem("timer") && JSON.parse(localStorage.getItem("timer"));
   }
 
   componentDidMount() {
     this.initCodeMirror();
+    this.goTiemr();
   }
 
   componentDidUpdate(preProps: P, nextState: S) {
@@ -92,6 +99,22 @@ export default class Study extends React.Component<P, S> {
       this.initCodeMirror();
     }
   }
+
+  goTiemr = (reload?: boolean) => {
+    if (!this.timer || reload) {
+      this.timer = moment();
+      localStorage.setItem("timer", JSON.stringify(this.timer));
+    }
+    setInterval(() => {
+      const now = moment();
+      const diff = now.diff(this.timer);
+      const consumption = moment.utc(diff).format("HH:mm:ss");
+
+      this.setState({
+        cspTimer: consumption,
+      });
+    }, 1000);
+  };
 
   initCodeMirror = () => {
     const { content, editMode } = this.state;
@@ -133,25 +156,31 @@ export default class Study extends React.Component<P, S> {
     });
   };
 
+  onTitle = (event: any) => {
+    const val = event.target.value;
+    this.setState({ title: val });
+    localStorage.setItem("studyTitle", val);
+  };
+
   onEditMode = (event: any) => {
-    this.setState({
-      editMode: event.target.value,
-    });
+    this.setState({ editMode: event.target.value });
   };
 
   onClean = () => {
     this.editor.setValue("");
+    this.goTiemr(true);
   };
 
   onSubmit = () => {
-    const { content } = this.state;
-    apiStudySubmit(JSON.stringify(content));
-    // localStorage.removeItem("studyContent");
+    const { content, title } = this.state;
+    apiStudySubmit(title, JSON.stringify(content));
+    localStorage.removeItem("studyTitle");
+    localStorage.removeItem("studyContent");
   };
 
   render() {
     const str = "```";
-    const { content, viewMode, editMode } = this.state;
+    const { content, viewMode, editMode, cspTimer, title } = this.state;
     const btnStyle =
       "outline-none mr-10 py-4 appearance-none bg-transparent text-center text-center-last cursor-pointer hover:text-jc-hover-color";
     const wrapStyle = " overflow-y-scroll flex-1";
@@ -163,9 +192,15 @@ export default class Study extends React.Component<P, S> {
       <div className="flex flex-col h-screen">
         <Navigation />
 
-        <div className="flex justify-end font-mono text-l text-jc-text-color border-b-2 border-gray-200">
+        <div className="flex font-mono text-l text-jc-text-color border-b-2 border-gray-200">
+          <input
+            value={title}
+            placeholder="标题"
+            onChange={this.onTitle}
+            className="flex-grow pl-4 text-lg font-black"
+          />
           <span className={btnStyle}>字数</span>
-          <span className={btnStyle}>耗时</span>
+          <span className={btnStyle}>{cspTimer || "耗时"}</span>
           <button type="button" className={btnStyle} onClick={this.onClean}>
             清空内容
           </button>
@@ -211,4 +246,6 @@ type S = {
   content: string;
   viewMode: number;
   editMode: string;
+  cspTimer: string | null;
+  title: string;
 };

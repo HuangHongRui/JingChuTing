@@ -40,8 +40,8 @@ export function apiArticle(content?: string) {
   return Api.get(`/article`, { value: content });
 }
 
-export function apiStudySubmit(content: string) {
-  return Api.post(`/study`, { value: content });
+export function apiStudySubmit(title: string, content: string) {
+  return Api.post(`/study`, { title, value: content });
 }
 
 interface PARAMS {
