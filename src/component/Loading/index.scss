@@ -4,6 +4,9 @@
   overflow: hidden;
   position: relative;
   width: 100%;
+  &.load-page {
+    position: inherit;
+  }
 }
 
 .loader-inner {
