@@ -197,7 +197,7 @@ export default class Study extends React.Component<P, S> {
             value={title}
             placeholder="标题"
             onChange={this.onTitle}
-            className="flex-grow pl-4 text-lg font-black"
+            className="flex-grow pl-4 text-lg font-black bg-transparent"
           />
           <span className={btnStyle}>字数</span>
           <span className={btnStyle}>{cspTimer || "耗时"}</span>

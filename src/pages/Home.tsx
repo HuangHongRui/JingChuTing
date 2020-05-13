@@ -1,20 +1,27 @@
 import React from "react";
 import Navigation from "component/Navigation";
 import Photo from "component/Photo";
-import { graph, redemption } from "style/image";
+import { leo } from "style/image";
 
 export default class Home extends React.PureComponent {
   render() {
     return (
-      <div style={{ backgroundImage: `url("${graph}")` }} className="p-home h-screen flex flex-col">
+      <div className="p-home h-screen flex flex-col">
         <Navigation />
-        <Photo
-          rootClass="m-auto overflow-hidden md:h-screen-50"
-          propClass="rounded-jc-3"
-          minWidth="md:w-screen-50"
-          picUrl={redemption}
-          mes="Save Yourself"
-        />
+        <div className="p-20 -mt-10 md:mt-0 flex flex-grow justify-center items-center flex-col md:flex-row">
+          <Photo
+            rootClass="overflow-hidden h-40 md:h-64"
+            propClass="rounded-full h-full"
+            minWidth="w-40 md:w-64"
+            picUrl={leo}
+            mes="Save Yourself"
+          />
+          <div className="infomation ml-10">
+            <p className="text-5xl font-black leading-loose">邢烽朔</p>
+            <p>凡心所向，素履所往，生如逆旅，一苇以航</p>
+          </div>
+        </div>
+        <div className="p-4 text-center text-xs md:text-base">Copyright © 2020 邢烽朔的博客 | 粤ICP备20027291号</div>
       </div>
     );
   }

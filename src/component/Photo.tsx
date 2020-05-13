@@ -5,7 +5,7 @@
 
 import React from "react";
 import cn from "classnames";
-import { redemption } from "style/image";
+import { leo } from "style/image";
 import Loading from "./Loading/index";
 
 export default class Photo extends React.Component<P, S> {
@@ -33,7 +33,7 @@ export default class Photo extends React.Component<P, S> {
         loading: false,
       });
     };
-    img.src = picUrl || redemption;
+    img.src = picUrl || leo;
   }
 
   onload = () => {
@@ -47,14 +47,14 @@ export default class Photo extends React.Component<P, S> {
     const { rootClass, propClass, picUrl, mes, minWidth } = this.props;
     const mw = (loading && minWidth) || "";
     const rootClassName = cn("c-photo flex justify-center", rootClass, mw);
-    const propClassName = cn("border-8 border-solid border-jc-bg-color rounded-lg h-full", propClass);
+    const propClassName = cn("border-8 border-solid border-jc-bg-color rounded-lg", propClass);
 
     return (
       <div className={rootClassName}>
         {loading ? (
           <Loading className={propClassName} />
         ) : (
-          <img className={propClassName} alt={mes} src={picUrl || redemption} onLoad={this.onload} />
+          <img className={propClassName} alt={mes} src={picUrl || leo} onLoad={this.onload} />
         )}
       </div>
     );
