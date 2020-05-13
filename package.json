@@ -8,7 +8,7 @@
     "dev": "cd ./config && webpack-dev-server --config dev.webpack.js",
     "pro": "cd ./config && npx webpack --config pro.webpack.js",
     "tailwind:css": "tailwind build src/css/tailwind.src.css -c tailwind.js -o src/css/tailwind.css",
-    "commit": "git add . && git-cz",
+    "commit": "git-cz",
     "version": "standard-version",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md",
     "changelog-all": "conventional-changelog -i CHANGELOG.md -s -r 0",
