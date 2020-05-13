@@ -9,8 +9,9 @@ export default class Home extends React.PureComponent {
       <div style={{ backgroundImage: `url("${graph}")` }} className="p-home h-screen flex flex-col">
         <Navigation />
         <Photo
-          rootClass="md:max-w-screen-xl flex-1 m-auto flex items-center"
-          propClass="md:h-screen-50 rounded-jc-3"
+          rootClass="m-auto overflow-hidden md:h-screen-50"
+          propClass="rounded-jc-3"
+          minWidth="md:w-screen-50"
           picUrl={redemption}
           mes="Save Yourself"
         />

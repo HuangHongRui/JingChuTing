@@ -6,6 +6,7 @@
 import React from "react";
 import cn from "classnames";
 import { redemption } from "style/image";
+import Loading from "./Loading/index";
 
 export default class Photo extends React.Component<P, S> {
   static defaultProps = {
@@ -14,22 +15,47 @@ export default class Photo extends React.Component<P, S> {
     time: "",
     title: "",
     picUrl: "",
-    mes: ""
+    mes: "",
   };
 
   constructor(props: P) {
     super(props);
-    this.state = {};
+    this.state = {
+      loading: true,
+    };
   }
 
+  componentDidMount() {
+    const { picUrl } = this.props;
+    const img = new Image();
+    img.onload = () => {
+      this.setState({
+        loading: false,
+      });
+    };
+    img.src = picUrl || redemption;
+  }
+
+  onload = () => {
+    this.setState({
+      loading: false,
+    });
+  };
+
   render() {
-    const { rootClass, propClass, picUrl, mes } = this.props;
-    const rootClassName = cn("c-photo m-auto overflow-hidden", rootClass);
-    const propClassName = cn("border-8 border-solid border-jc-bg-color rounded-lg", propClass);
+    const { loading } = this.state;
+    const { rootClass, propClass, picUrl, mes, minWidth } = this.props;
+    const mw = (loading && minWidth) || "";
+    const rootClassName = cn("c-photo flex justify-center", rootClass, mw);
+    const propClassName = cn("border-8 border-solid border-jc-bg-color rounded-lg h-full", propClass);
 
     return (
       <div className={rootClassName}>
-        <img className={propClassName} alt={mes} src={picUrl || redemption} />
+        {loading ? (
+          <Loading className={propClassName} />
+        ) : (
+          <img className={propClassName} alt={mes} src={picUrl || redemption} onLoad={this.onload} />
+        )}
       </div>
     );
   }
@@ -42,8 +68,10 @@ type P = {
   time: string;
   title: string;
   mes: string;
+  minWidth?: string;
 };
 
 interface S {
   demo?: boolean;
+  loading: boolean;
 }

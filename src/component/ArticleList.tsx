@@ -27,13 +27,13 @@ export default class Article extends React.Component<P, {}> {
 
     return (
       <div className={rootClassName}>
-        {data.map(item => {
+        {data.map((item) => {
           const { id, picPath, title, intro, time } = item;
           if (!picPath && !title) return null;
           return (
             <article key={id} className={artcileClassName}>
               <Photo
-                rootClass="hidden w-1/3 md:block h-full"
+                rootClass="hidden w-1/3 md:flex h-full"
                 propClass="rounded-none"
                 picUrl={picPath}
                 mes="article pic"
