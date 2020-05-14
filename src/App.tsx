@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loading from "component/Loading";
-import { Error, Home, Study, Article } from "./pages";
+import { Error, Home, Study, Article, Login } from "./pages";
 
 export default class App extends React.PureComponent {
   render() {
@@ -12,6 +12,7 @@ export default class App extends React.PureComponent {
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/article" component={Article} />
             <Route exact path="/study" component={Study} />
+            <Route exact path="/login" component={Login} />
             <Route path="*" component={Error} />
           </Switch>
         </Suspense>

@@ -25,6 +25,7 @@ module.exports = {
         "jc-300": "300px",
       },
       borderRadius: {
+        rem: "1rem",
         "jc-3": "3rem",
       },
     },

@@ -20,10 +20,12 @@ export default class Article extends React.Component<P, {}> {
   render() {
     const { rootClass, data } = this.props;
     const rootClassName = cn(
-      "c-article-list md:max-w-screen-lg flex m-auto flex-col md:my-10 p-5 pb-0 md:border border-solid text-jc-text-color font-serif",
+      "c-article-list md:max-w-screen-lg flex m-auto flex-col md:my-10 p-5 pb-0 text-jc-text-color font-serif",
       rootClass
     );
-    const artcileClassName = cn("flex bg-jc-bg-color p-5 overflow-hidden h-64 mb-5 min-w-jc-300");
+    const artcileClassName = cn(
+      "flex p-5 border-2 rounded-rem border-jc-text-color overflow-hidden h-64 mb-5 min-w-jc-300"
+    );
 
     return (
       <div className={rootClassName}>

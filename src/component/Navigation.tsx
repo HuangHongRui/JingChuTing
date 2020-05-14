@@ -24,7 +24,7 @@ export default class Navigation extends React.Component<P, {}> {
 
   render() {
     const { rootClass, navData, match } = this.props;
-    const tailwind = "flex justify-center h-16 w-full bg-jc-bg-color border-b-2 border-gray-200 text-jc-text-color";
+    const tailwind = "flex justify-center h-16 w-full bg-jc-bg-color text-jc-text-color";
     const rootClassName = cn("c-nav", rootClass, tailwind);
 
     return (
