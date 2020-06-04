@@ -21,7 +21,12 @@ export default class Home extends React.PureComponent {
             <p>凡心所向，素履所往，生如逆旅，一苇以航</p>
           </div>
         </div>
-        <div className="p-4 text-center text-xs md:text-base">Copyright © 2020 邢烽朔的博客 | 粤ICP备20027291号</div>
+        <div className="p-4 text-center text-xs md:text-base">
+          <span>Copyright © 2020 邢烽朔的博客 | </span>
+          <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noreferrer">
+            粤ICP备20027291号
+          </a>
+        </div>
       </div>
     );
   }
