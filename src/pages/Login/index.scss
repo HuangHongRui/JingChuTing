@@ -18,10 +18,14 @@
     align-items: center;
 
     &.qq {
-      background: #498AD5;
+      // background: #498AD5;
+      background: rgba(73, 138, 213, 0.2);
+      cursor: no-drop;
     }
     &.wx {
-      background: #03BB29;
+      // background: #03BB29;
+      background: rgba(3, 187, 40, 0.2);
+      cursor: no-drop;
     }
     &.gh {
       background: #868ca0;

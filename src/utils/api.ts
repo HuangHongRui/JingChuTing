@@ -1,6 +1,7 @@
 import axios, { AxiosPromise } from "axios";
 
-axios.defaults.baseURL = "https://localhost:5000/api";
+axios.defaults.baseURL = "http://localhost:5000/api";
+axios.defaults.withCredentials = true;
 axios.defaults.timeout = 5000;
 
 const observe = async (params: PARAMS) => {
@@ -32,16 +33,20 @@ const Api: METHODS = {
   },
 };
 
-export function apiSearch(content: string) {
-  return Api.get(`/search`, { value: content });
+export function apiLogin(type: string, code: string) {
+  return Api.get(`/login/${type}`, { code });
 }
 
-export function apiArticle(content?: string) {
-  return Api.get(`/article`, { value: content });
+export function apiSearch(value: string) {
+  return Api.get(`/search`, { value });
+}
+
+export function apiArticle(value?: string) {
+  return Api.get(`/article`, { value });
 }
 
 export function apiStudySubmit(title: string, content: string) {
-  return Api.post(`/study`, { title, value: content });
+  return Api.post(`/study`, { title, content });
 }
 
 interface PARAMS {
