@@ -2,16 +2,24 @@ import React from "react";
 import cn from "classnames";
 import * as Icons from "style/icon";
 
-export default class Social extends React.Component<P, S> {
+export default class Social extends React.Component<P> {
   static defaultProps = {
     rootClass: "default",
     propClass: "h-4",
     data: [
       { id: "Weibo", name: "微博", url: "https://weibo.com/huanghongrui" },
-      { id: "Zhihu", name: "知乎", url: "https://www.zhihu.com/people/HuangHongRui/activities" },
+      {
+        id: "Zhihu",
+        name: "知乎",
+        url: "https://www.zhihu.com/people/HuangHongRui/activities",
+      },
       { id: "Github", name: "GitHub", url: "https://github.com/HuangHongRui" },
       { id: "Twitter", name: "推特", url: "https://twitter.com/HongRui_Huang" },
-      { id: "Instagram", name: "Ins", url: "https://www.instagram.com/xingfengshuo/" },
+      {
+        id: "Instagram",
+        name: "Ins",
+        url: "https://www.instagram.com/xingfengshuo/",
+      },
     ],
   };
 
@@ -50,5 +58,3 @@ type P = {
     name: "string";
   }[];
 };
-
-type S = {};

@@ -241,7 +241,7 @@ export default class Study extends React.Component<P, S> {
   }
 }
 
-type P = {};
+type P = any;
 type S = {
   content: string;
   viewMode: number;

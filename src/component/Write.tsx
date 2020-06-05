@@ -1,19 +1,9 @@
 import React from "react";
 import cn from "classnames";
 
-export default class Write extends React.Component<P, S> {
-  constructor(props: Readonly<P>) {
-    super(props);
-    this.state = {};
-  }
-
-  static propsDefault = {
-    rootClass: "default"
-  };
-
+export default class Write extends React.PureComponent {
   render() {
-    const { rootClass } = this.props;
-    const rootClassName = cn("c-write", { rootClass });
+    const rootClassName = cn("c-write");
 
     return (
       <div className={rootClassName}>
@@ -23,12 +13,4 @@ export default class Write extends React.Component<P, S> {
       </div>
     );
   }
-}
-
-type P = {
-  rootClass: string;
-};
-
-interface S {
-  demo?: boolean;
 }

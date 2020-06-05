@@ -5,11 +5,29 @@ import { redemption } from "style/image";
 import Photo from "./Photo";
 
 @withRouter
-export default class Article extends React.Component<P, {}> {
+export default class Article extends React.Component<P> {
   static defaultProps = {
     rootClass: "default",
     // eslint-disable-next-line prettier/prettier
-    data: [ { id: "0", picPath: redemption, title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial", intro: "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.", time: "8h ago2160 comments" }, { id: "", picPath: "", title: "", intro: "", time: "" }, { id: "2", picPath: redemption, title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial", intro: "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.", time: "8h ago2160 comments" } ]
+    data: [
+      {
+        id: "0",
+        picPath: redemption,
+        title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
+        intro:
+          "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.",
+        time: "8h ago2160 comments",
+      },
+      { id: "", picPath: "", title: "", intro: "", time: "" },
+      {
+        id: "2",
+        picPath: redemption,
+        title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
+        intro:
+          "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.",
+        time: "8h ago2160 comments",
+      },
+    ],
   };
 
   constructor(props: P) {

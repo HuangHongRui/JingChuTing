@@ -1,20 +1,9 @@
 import React from "react";
 import cn from "classnames";
 
-export default class ErrorBoundary extends React.Component<P, S> {
-  constructor(props: Readonly<P>) {
-    super(props);
-    this.state = {};
-  }
-
-  static propsDefault = {
-    rootClass: "default"
-  };
-
+export default class ErrorBoundary extends React.PureComponent {
   render() {
-    const { rootClass } = this.props;
-    const rootClassName = cn("c-error", { rootClass });
-
+    const rootClassName = cn("c-error");
     return (
       <main className={rootClassName}>
         {
@@ -24,12 +13,4 @@ export default class ErrorBoundary extends React.Component<P, S> {
       </main>
     );
   }
-}
-
-type P = {
-  rootClass: string;
-};
-
-interface S {
-  demo?: boolean;
 }

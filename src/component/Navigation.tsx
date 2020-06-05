@@ -6,7 +6,7 @@ import Search from "component/Search";
 import { jingchuting as logo } from "style/image";
 
 @withRouter
-export default class Navigation extends React.Component<P, {}> {
+export default class Navigation extends React.Component<P> {
   static defaultProps = {
     rootClass: "default",
     match: { path: "" },

@@ -7,8 +7,8 @@
 }
 
 body {
-  background: #F7F2F0;
-  background: linear-gradient(#F7F2F0, #dffff0)
+  background: #f7f2f0;
+  background: linear-gradient(#f7f2f0, #dffff0);
 }
 
 #Leo {
@@ -22,7 +22,7 @@ body {
 }
 
 .multi-line-ellipsis {
-  overflow : hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -51,10 +51,12 @@ body {
   ol {
     list-style: decimal;
   }
-  ul ul, ol ul { 
-    list-style-type: circle; 
+  ul ul,
+  ol ul {
+    list-style-type: circle;
   }
-  ul ul ul, ul ol ul {
-      list-style-type: square;
+  ul ul ul,
+  ul ol ul {
+    list-style-type: square;
   }
 }

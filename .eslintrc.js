@@ -3,34 +3,34 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
-    node: true
+    node: true,
   },
   extends: [
     "airbnb",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
   ],
   globals: {
     Atomics: "readonly",
-    SharedArrayBuffer: "readonly"
+    SharedArrayBuffer: "readonly",
   },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
   plugins: ["react", "@typescript-eslint", "prettier"],
   settings: {
     "import/resolver": {
       typescript: {
-        alwaysTryTypes: true
-      }
-    }
+        alwaysTryTypes: true,
+      },
+    },
   },
   rules: {
     "@typescript-eslint/no-namespace": "off",
@@ -42,7 +42,7 @@ module.exports = {
     "import/extensions": [
       "error",
       "ignorePackages",
-      { js: "never", jsx: "never", ts: "never", tsx: "never" }
+      { js: "never", jsx: "never", ts: "never", tsx: "never" },
     ],
     "react/static-property-placement": ["error", "static public field"],
     "import/prefer-default-export": "off",
@@ -54,8 +54,8 @@ module.exports = {
       "error",
       {
         tabWidth: 2,
-        printWidth: 120
-      }
-    ]
-  }
+        printWidth: 120,
+      },
+    ],
+  },
 };

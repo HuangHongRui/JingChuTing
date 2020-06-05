@@ -7,19 +7,19 @@ export default class Search extends React.Component<P, S> {
   static defaultProps = {
     propClass: "h-4",
     rootClass: "default",
-    searchAPI: ""
+    searchAPI: "",
   };
 
   constructor(props: P) {
     super(props);
     this.state = {
-      content: ""
+      content: "",
     };
   }
 
   onInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({
-      content: event.target.value
+      content: event.target.value,
     });
   };
 
