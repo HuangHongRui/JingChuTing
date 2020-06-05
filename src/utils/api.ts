@@ -24,43 +24,57 @@ const observe = async (params: PARAMS) => {
 };
 
 const Api: METHODS = {
-  get: (url, params, config) => {
-    return observe({ method: "GET", url, params, ...config });
+  get: (url, params) => {
+    return observe({ method: "GET", url, params });
   },
 
-  post: (url, params, config) => {
-    return observe({ method: "POST", url, params, ...config });
+  post: (url, params) => {
+    return observe({ method: "POST", url, params });
   },
 };
 
-export function apiLogin(type: string, code: string) {
+export function apiLogin(type: string, code: string): AxiosPromise {
   return Api.get(`/login/${type}`, { code });
 }
 
-export function apiSearch(value: string) {
+export function apiIsLogin(): AxiosPromise {
+  return Api.get(`/islogin`);
+}
+
+export function apiLogout(): AxiosPromise {
+  return Api.get(`/logout`);
+}
+
+export function apiSearch(value: string): AxiosPromise {
   return Api.get(`/search`, { value });
 }
 
-export function apiArticle(value?: string) {
+export function apiArticle(value?: string): AxiosPromise {
   return Api.get(`/article`, { value });
 }
 
-export function apiStudySubmit(title: string, content: string) {
+export function apiStudySubmit(title: string, content: string): AxiosPromise {
   return Api.post(`/study`, { title, content });
 }
 
-interface PARAMS {
+type Param = {
+  title?: string;
+  value?: string;
+  content?: string;
+  code?: string;
+};
+
+type PARAMS = {
   method: "GET" | "POST";
   url: string;
-  params?: object;
-  config?: {};
-}
+  params?: Param;
+};
 
 interface METHODS {
   get: {
-    (url: string, params: object, config?: object): AxiosPromise;
+    (url: string, params?: Param): AxiosPromise;
   };
   post: {
-    (url: string, params: object, config?: object): AxiosPromise;
+    (url: string, params: Param): AxiosPromise;
   };
 }
