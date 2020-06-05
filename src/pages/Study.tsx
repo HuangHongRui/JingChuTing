@@ -2,9 +2,12 @@ import React from "react";
 import marked from "marked";
 import CodeMirror from "codemirror";
 import Prism from "prismjs";
+import cn from "classnames";
 import moment from "moment";
+import { withRouter } from "react-router-dom";
 import Navigation from "component/Navigation";
-import { apiStudySubmit } from "utils/api";
+import Loading from "component/Loading";
+import { apiStudySubmit, apiIsLogin } from "utils/api";
 
 import "codemirror/keymap/vim";
 // 使用语言
@@ -68,16 +71,19 @@ enum ViewModeType {
   "编辑模式",
   "预览模式",
 }
+
+@withRouter
 export default class Study extends React.Component<P, S> {
   editor: any;
 
-  textareaPRef: React.RefObject<any>;
-
   timer: any;
+
+  textareaPRef: React.RefObject<any>;
 
   constructor(props: Readonly<P>) {
     super(props);
     this.state = {
+      loading: true,
       content: localStorage.getItem("studyContent") || "",
       editMode: EditModeType.md,
       viewMode: ViewModeType.编辑模式,
@@ -88,19 +94,40 @@ export default class Study extends React.Component<P, S> {
     this.timer = localStorage.getItem("timer") && JSON.parse(localStorage.getItem("timer"));
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
+    this.authentication();
     this.initCodeMirror();
     this.goTiemr();
   }
 
-  componentDidUpdate(preProps: P, nextState: S) {
+  componentDidUpdate(preProps: P, nextState: S): void {
     const { editMode } = this.state;
     if (editMode !== nextState.editMode) {
       this.initCodeMirror();
     }
   }
 
-  goTiemr = (reload?: boolean) => {
+  authentication = (): void => {
+    const { history } = this.props;
+    const islogin = localStorage.getItem("login");
+    switch (islogin) {
+      case "self":
+        apiIsLogin().then((res: any) => {
+          if (res.status && res.data.login) {
+            this.setState({ loading: false });
+          }
+        });
+        break;
+      case "others":
+        alert("该功能为博主专用");
+        history.push("home");
+        break;
+      default:
+        history.push("login");
+    }
+  };
+
+  goTiemr = (reload?: boolean): void => {
     if (!this.timer || reload) {
       this.timer = moment();
       localStorage.setItem("timer", JSON.stringify(this.timer));
@@ -116,7 +143,7 @@ export default class Study extends React.Component<P, S> {
     }, 1000);
   };
 
-  initCodeMirror = () => {
+  initCodeMirror = (): void => {
     const { content, editMode } = this.state;
     const textareaPRef = this.textareaPRef.current;
     this.editor = CodeMirror(
@@ -148,7 +175,7 @@ export default class Study extends React.Component<P, S> {
     return marked(value);
   };
 
-  onTabViewMode = () => {
+  onTabViewMode = (): void => {
     const { viewMode } = this.state;
     const val = viewMode ? 0 : 1;
     this.setState({
@@ -156,22 +183,22 @@ export default class Study extends React.Component<P, S> {
     });
   };
 
-  onTitle = (event: any) => {
+  onTitle = (event: any): void => {
     const val = event.target.value;
     this.setState({ title: val });
     localStorage.setItem("studyTitle", val);
   };
 
-  onEditMode = (event: any) => {
+  onEditMode = (event: any): void => {
     this.setState({ editMode: event.target.value });
   };
 
-  onClean = () => {
+  onClean = (): void => {
     this.editor.setValue("");
     this.goTiemr(true);
   };
 
-  onSubmit = () => {
+  onSubmit = (): void => {
     const { content, title } = this.state;
     apiStudySubmit(title, JSON.stringify(content));
     localStorage.removeItem("studyTitle");
@@ -180,7 +207,7 @@ export default class Study extends React.Component<P, S> {
 
   render() {
     const str = "```";
-    const { content, viewMode, editMode, cspTimer, title } = this.state;
+    const { content, viewMode, editMode, cspTimer, title, loading } = this.state;
     const btnStyle =
       "outline-none mr-10 py-4 appearance-none bg-transparent text-center text-center-last cursor-pointer hover:text-jc-hover-color";
     const wrapStyle = " overflow-y-scroll flex-1";
@@ -189,60 +216,64 @@ export default class Study extends React.Component<P, S> {
     const markContent = editMode === EditModeType.md ? content : `${str + EditModeType.md}\n${content}\n${str}`;
 
     return (
-      <div className="flex flex-col h-screen">
-        <Navigation />
+      <>
+        <Loading className={cn("load-page", { hidden: !loading })} />
+        <div className={cn("flex flex-col h-screen ", { invisible: loading })}>
+          <Navigation />
 
-        <div className="flex font-mono text-l text-jc-text-color border-b-2 border-gray-200">
-          <input
-            value={title}
-            placeholder="标题"
-            onChange={this.onTitle}
-            className="flex-grow pl-4 text-lg font-black bg-transparent"
-          />
-          <span className={btnStyle}>字数</span>
-          <span className={btnStyle}>{cspTimer || "耗时"}</span>
-          <button type="button" className={btnStyle} onClick={this.onClean}>
-            清空内容
-          </button>
-          <button type="button" className={btnStyle}>
-            同步滚动
-          </button>
-          <select className={btnStyle}>
-            <option>MATERIAL</option>
-          </select>
-          <select className={btnStyle} value={editMode} onChange={this.onEditMode}>
-            {Object.keys(EditModeType).map((item: string) => {
-              const detail = (EditModeType as any)[item];
-              return (
-                <option key={item} value={detail}>
-                  {detail.toUpperCase()}
-                </option>
-              );
-            })}
-          </select>
-          <button type="button" className={btnStyle} onClick={this.onTabViewMode}>
-            {ViewModeType[viewMode]}
-          </button>
-          <button type="button" className={btnStyle} onClick={this.onSubmit}>
-            提交
-          </button>
-        </div>
+          <div className="flex font-mono text-l text-jc-text-color border-b-2 border-gray-200">
+            <input
+              value={title}
+              placeholder="标题"
+              onChange={this.onTitle}
+              className="flex-grow pl-4 text-lg font-black bg-transparent"
+            />
+            <span className={btnStyle}>字数</span>
+            <span className={btnStyle}>{cspTimer || "耗时"}</span>
+            <button type="button" className={btnStyle} onClick={this.onClean}>
+              清空内容
+            </button>
+            <button type="button" className={btnStyle}>
+              同步滚动
+            </button>
+            <select className={btnStyle}>
+              <option>MATERIAL</option>
+            </select>
+            <select className={btnStyle} value={editMode} onChange={this.onEditMode}>
+              {Object.keys(EditModeType).map((item: string) => {
+                const detail = (EditModeType as any)[item];
+                return (
+                  <option key={item} value={detail}>
+                    {detail.toUpperCase()}
+                  </option>
+                );
+              })}
+            </select>
+            <button type="button" className={btnStyle} onClick={this.onTabViewMode}>
+              {ViewModeType[viewMode]}
+            </button>
+            <button type="button" className={btnStyle} onClick={this.onSubmit}>
+              提交
+            </button>
+          </div>
 
-        <div className="flex flex-1 overflow-hidden">
-          <div className={`${editStyle}`} ref={this.textareaPRef}>
-            <textarea />
-          </div>
-          <div className={markStyle}>
-            <div dangerouslySetInnerHTML={{ __html: marked(markContent) }} />
+          <div className="flex flex-1 overflow-hidden">
+            <div className={`${editStyle}`} ref={this.textareaPRef}>
+              <textarea />
+            </div>
+            <div className={markStyle}>
+              <div dangerouslySetInnerHTML={{ __html: marked(markContent) }} />
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
 
 type P = any;
 type S = {
+  loading: boolean;
   content: string;
   viewMode: number;
   editMode: string;

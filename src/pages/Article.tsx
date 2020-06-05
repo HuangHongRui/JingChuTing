@@ -1,4 +1,4 @@
-import React, { Props } from "react";
+import React from "react";
 import Navigation from "component/Navigation";
 import ArticleList from "component/ArticleList";
 import { apiArticle } from "utils/api";
@@ -11,7 +11,7 @@ export default class Article extends React.PureComponent<P, S> {
     };
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     apiArticle().then((res: any) => {
       this.setState({
         articleList: res.data,
@@ -22,7 +22,7 @@ export default class Article extends React.PureComponent<P, S> {
   render() {
     const { articleList } = this.state;
     return (
-      <div>
+      <div className="overflow-scroll h-full">
         <Navigation />
         <ArticleList data={articleList} />
       </div>
