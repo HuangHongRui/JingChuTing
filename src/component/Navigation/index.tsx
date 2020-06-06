@@ -4,28 +4,31 @@ import { withRouter, Link } from "react-router-dom";
 import Social from "component/Social";
 import Search from "component/Search";
 import { jingchuting as logo } from "style/image";
+import "./index.scss";
 
 @withRouter
-export default class Navigation extends React.Component<P> {
-  static defaultProps = {
-    rootClass: "default",
-    match: { path: "" },
-    navData: [
-      { title: "首页", url: "home" },
-      { title: "文章", url: "article" },
-      { title: "便笺", url: "note" },
-    ],
-  };
-
+export default class Navigation extends React.Component<P, S> {
   constructor(props: P) {
     super(props);
-    this.state = {};
+    this.state = {
+      navData: [
+        { title: "首页", url: "home" },
+        { title: "文章", url: "article" },
+        { title: "便笺", url: "note" },
+        {
+          title: "写作",
+          url: "study",
+          auth: localStorage.getItem("login") === "self",
+        },
+      ],
+    };
   }
 
   render() {
-    const { rootClass, navData, match } = this.props;
+    const { match } = this.props;
+    const { navData } = this.state;
     const tailwind = "flex justify-center h-16 w-full bg-jc-bg-color text-jc-text-color";
-    const rootClassName = cn("c-nav", rootClass, tailwind);
+    const rootClassName = cn("c-nav", tailwind);
 
     return (
       <nav className={rootClassName}>
@@ -35,11 +38,15 @@ export default class Navigation extends React.Component<P> {
             {navData.map((item) => {
               const path = match.path === "/" ? "/home" : match.path;
               const isActive = RegExp(item.url).test(path);
-              const btnclass = cn("mx-4 font-black hover:text-jc-hover-color outline-none", {
+              const btn = cn("mx-4 font-black hover:text-jc-hover-color outline-none", {
                 "text-jc-hover-color": isActive,
               });
+              const needAuth = cn({
+                hidden: typeof item.auth === "boolean" && !item.auth,
+              });
+              const btnClass = cn(btn, needAuth);
               return (
-                <button key={item.url} type="button" className={btnclass}>
+                <button key={item.url} type="button" className={btnClass}>
                   <Link to={item.url}>{item.title}</Link>
                 </button>
               );
@@ -54,10 +61,13 @@ export default class Navigation extends React.Component<P> {
 }
 
 interface P {
-  match: { path: string };
-  rootClass: string;
+  match?: { path: string };
+}
+
+type S = {
   navData: {
     title: string;
     url: string;
+    auth?: boolean;
   }[];
-}
+};
