@@ -1,6 +1,10 @@
 import axios, { AxiosPromise } from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000/api";
+let baseURL = `http://localhost:5000/api`;
+if (process.env.NODE_ENV === "production") {
+  baseURL = `${window.location.origin}/api`;
+}
+axios.defaults.baseURL = baseURL;
 axios.defaults.withCredentials = true;
 axios.defaults.timeout = 5000;
 
