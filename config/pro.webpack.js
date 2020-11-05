@@ -52,8 +52,10 @@ module.exports = {
           {
             loader: "postcss-loader",
             options: {
-              ident: "postcss",
-              plugins: [tailwindcss("../tailwind.config.js"), autoprefixer],
+              postcssOptions: {
+                ident: "postcss",
+                plugins: [tailwindcss("../tailwind.config.js"), autoprefixer],
+              },
             },
           },
           "sass-loader",
@@ -62,16 +64,16 @@ module.exports = {
       {
         test: /\.svg$/,
         exclude: path.resolve(paths.appSrc, "style/image"),
-        issuer: {
-          test: /\.ts(x)?$/,
-        },
+        // issuer: {
+        //   test: /\.ts(x)?$/,
+        // },
         use: ["@svgr/webpack"],
       },
       {
         test: /\.svg$/,
-        issuer: {
-          test: /\.ts(x)?$/,
-        },
+        // issuer: {
+        //   test: /\.ts(x)?$/,
+        // },
         exclude: path.resolve(paths.appSrc, "style/icon"),
         use: [
           "@svgr/webpack",
