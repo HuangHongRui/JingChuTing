@@ -23,7 +23,11 @@ export default class Home extends React.PureComponent {
         </div>
         <div className="p-4 text-center text-xs md:text-base">
           <span>Copyright © 2020 邢烽朔的博客 | </span>
-          <a href="http://www.beian.miit.gov.cn" target="_blank" rel="noreferrer">
+          <a
+            href="http://www.beian.miit.gov.cn"
+            target="_blank"
+            rel="noreferrer"
+          >
             粤ICP备20027291号
           </a>
         </div>

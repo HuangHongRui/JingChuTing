@@ -33,6 +33,9 @@ module.exports = {
     },
   },
   rules: {
+    "no-shadow": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
