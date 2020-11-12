@@ -5,7 +5,6 @@ import Prism from "prismjs";
 import cn from "classnames";
 import moment from "moment";
 import { withRouter } from "react-router-dom";
-import Navigation from "component/Navigation";
 import Loading from "component/Loading";
 import { apiStudySubmit, apiIsLogin } from "utils/api";
 
@@ -91,7 +90,9 @@ export default class Study extends React.Component<P, S> {
       title: localStorage.getItem("studyTitle") || "",
     };
     this.textareaPRef = React.createRef();
-    this.timer = localStorage.getItem("timer") && JSON.parse(localStorage.getItem("timer"));
+    this.timer =
+      localStorage.getItem("timer") &&
+      JSON.parse(localStorage.getItem("timer"));
   }
 
   componentDidMount(): void {
@@ -207,20 +208,30 @@ export default class Study extends React.Component<P, S> {
 
   render() {
     const str = "```";
-    const { content, viewMode, editMode, cspTimer, title, loading } = this.state;
+    const {
+      content,
+      viewMode,
+      editMode,
+      cspTimer,
+      title,
+      loading,
+    } = this.state;
     const btnStyle =
       "outline-none mr-10 py-4 appearance-none bg-transparent text-center text-center-last cursor-pointer hover:text-jc-hover-color";
     const wrapStyle = " overflow-y-scroll flex-1";
     const editStyle = `codemirror-body ${wrapStyle}`;
-    const markStyle = `markdown-body ${wrapStyle} ${ViewModeType[viewMode] === "编辑模式" ? "" : " hidden"}`;
-    const markContent = editMode === EditModeType.md ? content : `${str + EditModeType.md}\n${content}\n${str}`;
+    const markStyle = `markdown-body ${wrapStyle} ${
+      ViewModeType[viewMode] === "编辑模式" ? "" : " hidden"
+    }`;
+    const markContent =
+      editMode === EditModeType.md
+        ? content
+        : `${str + EditModeType.md}\n${content}\n${str}`;
 
     return (
       <>
         <Loading className={cn("load-page", { hidden: !loading })} />
         <div className={cn("flex flex-col h-screen ", { invisible: loading })}>
-          <Navigation />
-
           <div className="flex font-mono text-l text-jc-text-color border-b-2 border-gray-200">
             <input
               value={title}
@@ -239,7 +250,11 @@ export default class Study extends React.Component<P, S> {
             <select className={btnStyle}>
               <option>MATERIAL</option>
             </select>
-            <select className={btnStyle} value={editMode} onChange={this.onEditMode}>
+            <select
+              className={btnStyle}
+              value={editMode}
+              onChange={this.onEditMode}
+            >
               {Object.keys(EditModeType).map((item: string) => {
                 const detail = (EditModeType as any)[item];
                 return (
@@ -249,7 +264,11 @@ export default class Study extends React.Component<P, S> {
                 );
               })}
             </select>
-            <button type="button" className={btnStyle} onClick={this.onTabViewMode}>
+            <button
+              type="button"
+              className={btnStyle}
+              onClick={this.onTabViewMode}
+            >
               {ViewModeType[viewMode]}
             </button>
             <button type="button" className={btnStyle} onClick={this.onSubmit}>

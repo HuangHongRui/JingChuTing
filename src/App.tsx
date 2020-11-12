@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loading from "component/Loading";
+import Navigation from "component/Navigation";
 import { Error, Home, Study, Article, Login } from "./pages";
 
 export default class App extends React.PureComponent {
@@ -8,6 +9,7 @@ export default class App extends React.PureComponent {
     return (
       <BrowserRouter>
         <Suspense fallback={<Loading className="load-page" />}>
+          <Navigation />
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
             <Route exact path="/article" component={Article} />

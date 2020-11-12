@@ -1,5 +1,4 @@
 import React from "react";
-import Navigation from "component/Navigation";
 import Photo from "component/Photo";
 import { leo } from "style/image";
 
@@ -7,7 +6,6 @@ export default class Home extends React.PureComponent {
   render() {
     return (
       <div className="p-home h-screen flex flex-col">
-        <Navigation />
         <div className="p-20 -mt-10 md:mt-0 flex flex-grow justify-center items-center flex-col md:flex-row">
           <Photo
             rootClass="overflow-hidden h-40 md:h-64"

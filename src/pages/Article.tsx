@@ -1,5 +1,4 @@
 import React from "react";
-import Navigation from "component/Navigation";
 import ArticleList from "component/ArticleList";
 import { apiArticle } from "utils/api";
 
@@ -23,7 +22,6 @@ export default class Article extends React.PureComponent<P, S> {
     const { articleList } = this.state;
     return (
       <div className="overflow-scroll h-full">
-        <Navigation />
         <ArticleList data={articleList} />
       </div>
     );

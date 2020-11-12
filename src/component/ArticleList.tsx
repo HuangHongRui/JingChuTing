@@ -13,7 +13,8 @@ export default class Article extends React.Component<P> {
       {
         id: "0",
         picPath: redemption,
-        title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
+        title:
+          "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
         intro:
           "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.",
         time: "8h ago2160 comments",
@@ -22,7 +23,8 @@ export default class Article extends React.Component<P> {
       {
         id: "2",
         picPath: redemption,
-        title: "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
+        title:
+          "Trump’s Legal Team Adds Starr and Dershowitz for Impeachment Trial",
         intro:
           "Ken Starr and a third lawyer named to the team, Robert Ray, were independent counsels who investigated President Bill Clinton.",
         time: "8h ago2160 comments",
@@ -60,7 +62,9 @@ export default class Article extends React.Component<P> {
               />
               <div className="flex flex-col pl-5 flex-grow w-2/3  md:my-2">
                 <h5 className="text-4xl text-ellipsis">{title}</h5>
-                <p className="font-mono my-5 flex-grow multi-line-ellipsis">{intro}</p>
+                <p className="font-mono my-5 flex-grow multi-line-ellipsis">
+                  {intro}
+                </p>
                 <div className="flex justify-between">
                   <button type="button" className="inline-block">
                     <Link to={`/article/${id}`}>查看</Link>
