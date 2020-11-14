@@ -1,0 +1,15 @@
+.nav-button-list {
+  // display: block;
+  position: absolute;
+  opacity: 0;
+  transition: all 1s;
+  top: -250px;
+
+  &.active {
+    opacity: 1;
+    top: unset;
+  }
+  li {
+    padding-top: 8px;
+  }
+}
