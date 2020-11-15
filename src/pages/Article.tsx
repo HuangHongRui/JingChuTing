@@ -1,34 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Art from "component/Article";
 import ArticleList from "component/ArticleList";
 import { apiArticle } from "utils/api";
+import { useLocation } from "react-router-dom";
 
-export default class Article extends React.PureComponent<P, S> {
-  constructor(props: Readonly<P>) {
-    super(props);
-    this.state = {
-      articleList: [],
-    };
-  }
+const Article = () => {
+  const [articleList, setArticleList] = useState([]);
+  const [articleId, setArticleId] = useState<number | unknown>();
+  const query = new URLSearchParams(useLocation().search);
 
-  componentDidMount(): void {
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     apiArticle().then((res: any) => {
-      this.setState({
-        articleList: res.data,
-      });
+      setArticleList(res.data);
     });
-  }
+    setArticleId(query.get("id"));
+  });
 
-  render() {
-    const { articleList } = this.state;
-    return (
-      <div className="overflow-scroll h-full">
-        <ArticleList data={articleList} />
-      </div>
-    );
-  }
-}
-
-type P = any;
-type S = {
-  articleList: [];
+  return (
+    <div className="overflow-scroll h-full">
+      {articleId ? <Art /> : <ArticleList data={articleList} />}
+    </div>
+  );
 };
+
+export default Article;

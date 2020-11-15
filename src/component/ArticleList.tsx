@@ -39,6 +39,7 @@ export default class Article extends React.Component<P> {
 
   render() {
     const { rootClass, data } = this.props;
+    const { location } = window;
     const rootClassName = cn(
       "c-article-list md:max-w-screen-lg flex m-auto flex-col md:my-10 p-5 pb-0 text-jc-text-color font-serif",
       rootClass
@@ -67,7 +68,7 @@ export default class Article extends React.Component<P> {
                 </p>
                 <div className="flex justify-between">
                   <button type="button" className="inline-block">
-                    <Link to={`/article/${id}`}>查看</Link>
+                    <Link to={`${location.pathname}?id=${id}`}>查看</Link>
                   </button>
                   <span className="text-right text-ellipsis">{time}</span>
                 </div>

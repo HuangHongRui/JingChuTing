@@ -12,7 +12,7 @@ export default class App extends React.PureComponent {
           <Navigation />
           <Switch>
             <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/article" component={Article} />
+            <Route exact path="/article/:classify" component={Article} />
             <Route exact path="/study" component={Study} />
             <Route exact path="/login" component={Login} />
             <Route path="*" component={Error} />

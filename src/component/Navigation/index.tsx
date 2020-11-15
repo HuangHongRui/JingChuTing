@@ -7,18 +7,18 @@ import { jingchuting as logo } from "style/image";
 import "./index.scss";
 
 const ButtonList = (props: {
-  data: S["navDataItem"]["child"];
+  data: S["navDataItem"];
   his: P["history"];
   classname: string;
 }) => {
   const { data, his, classname } = props;
   const goLink = (url: string) => {
     // event.stopPropagation();
-    his.push(url);
+    his.push(`/${data.url}/${url}`);
   };
   return (
     <ul className={cn("nav-button-list", classname)}>
-      {data.map((item: S["Child"]) => {
+      {data.child.map((item: S["Child"]) => {
         return (
           // eslint-disable-next-line
           <li key={item.url} onClick={() => goLink(item.url)}>
@@ -40,7 +40,7 @@ export default class Navigation extends React.Component<P, S> {
         { title: "首页", url: "home" },
         {
           title: "分类",
-          url: "classify",
+          url: "article",
           child: [
             { title: "编程", url: "code" },
             { title: "设计", url: "design" },
@@ -66,7 +66,7 @@ export default class Navigation extends React.Component<P, S> {
       this.onDownList(item.url);
     } else {
       const { history } = this.props;
-      history.push(item.url);
+      history.push(`/${item.url}`);
       this.onDownList(item.url);
     }
   };
@@ -83,7 +83,6 @@ export default class Navigation extends React.Component<P, S> {
     const tailwind =
       "flex justify-center h-16 w-full bg-jc-bg-color text-jc-text-color";
     const rootClassName = cn("c-nav", tailwind);
-
     return (
       <nav className={rootClassName}>
         <div className="w-10/12 flex items-center overflow-hidden justify-between xl:max-w-screen-xl font-serif">
@@ -121,7 +120,7 @@ export default class Navigation extends React.Component<P, S> {
                   {item.child && (
                     <ButtonList
                       classname={cn({ active: item.url === downTag })}
-                      data={item.child}
+                      data={item}
                       his={history}
                     />
                   )}
