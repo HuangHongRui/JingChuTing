@@ -19,7 +19,11 @@ const Article = () => {
 
   return (
     <div className="overflow-scroll h-full">
-      {articleId ? <Art /> : <ArticleList data={articleList} />}
+      {articleId ? (
+        <Art data={articleId} />
+      ) : (
+        <ArticleList data={articleList} />
+      )}
     </div>
   );
 };

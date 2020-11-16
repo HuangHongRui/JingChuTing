@@ -1,0 +1,9 @@
+.c-article {
+  .markdown-body {
+    margin: 2rem;
+    @media screen and (min-width: 1000px) {
+      width: 80vw;
+      margin: 2rem auto;
+    }
+  }
+}
