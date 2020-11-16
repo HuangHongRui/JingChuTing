@@ -1,5 +1,9 @@
 {
   "name": "the-front-end",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HuangHongRui/Blog"
+  },
   "version": "0.0.2",
   "description": "Leo's Blog",
   "main": "index.js",
