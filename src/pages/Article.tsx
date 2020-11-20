@@ -14,6 +14,9 @@ const Article = () => {
     apiArticle().then((res: any) => {
       setArticleList(res.data);
     });
+  }, []);
+
+  useEffect(() => {
     setArticleId(query.get("id"));
   });
 
