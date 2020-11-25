@@ -7,10 +7,9 @@ module.exports = {
   },
   extends: [
     "airbnb",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -52,13 +51,5 @@ module.exports = {
     "no-console": "error",
     // "import/no-unresolved": "error",
     // 'max-len': ['error', { code: 100, ignoreUrls: true, ignoreStrings: true }],
-    // prettier 配置
-    "prettier/prettier": [
-      "error",
-      {
-        tabWidth: 2,
-        printWidth: 120,
-      },
-    ],
   },
 };
