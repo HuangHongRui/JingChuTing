@@ -1,0 +1,50 @@
+.leo-home {
+  display: flex;
+
+  > .main {
+    display: flex;
+    padding: 5rem;
+    margin-top: 2.5rem;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+      flex-direction: row;
+    }
+
+    .home-photo {
+      overflow: hidden;
+      height: 10rem;
+
+      .main {
+        border-radius: 100%;
+        height: 100%;
+      }
+
+      &.min-width {
+        width: 10rem;
+      }
+
+      @media (min-width: 768px) {
+        height: 16rem;
+        flex-direction: row;
+
+        &.min-width {
+          width: 16rem;
+        }
+      }
+    }
+    .infomation {
+      margin-left: 2.5rem;
+
+      .nickname {
+        line-height: 2;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+    }
+  }
+}

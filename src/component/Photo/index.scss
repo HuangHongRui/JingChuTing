@@ -1,0 +1,11 @@
+@import "style/index.scss";
+
+.c-photo {
+  display: flex;
+  justify-content: center;
+
+  .main {
+    border: 8px solid $bg-color;
+    border-radius: 0.5rem;
+  }
+}

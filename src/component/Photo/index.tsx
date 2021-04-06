@@ -6,7 +6,8 @@
 import React from "react";
 import cn from "classnames";
 import { leo } from "style/image";
-import Loading from "./Loading/index";
+import Loading from "../Loading/index";
+import "./index.scss";
 
 export default class Photo extends React.Component<P, S> {
   static defaultProps = {
@@ -45,12 +46,9 @@ export default class Photo extends React.Component<P, S> {
   render() {
     const { loading } = this.state;
     const { rootClass, propClass, picUrl, mes, minWidth } = this.props;
-    const mw = (loading && minWidth) || "";
-    const rootClassName = cn("c-photo flex justify-center", rootClass, mw);
-    const propClassName = cn(
-      "border-8 border-solid border-jc-bg-color rounded-lg",
-      propClass
-    );
+    const mw = loading && minWidth;
+    const rootClassName = cn("c-photo", rootClass, { "min-width": mw });
+    const propClassName = cn("main", propClass);
 
     return (
       <div className={rootClassName}>
@@ -76,7 +74,7 @@ type P = {
   time: string;
   title: string;
   mes: string;
-  minWidth?: string | boolean;
+  minWidth?: boolean;
 };
 
 interface S {
